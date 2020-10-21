@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+<p>Download: 
+<%= link_to "CSV", products_path(format: "csv") %>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Import products</h2>
+<%= form_tag import_products_path, multipart: true do%>
+<%= file_field_tag :file %>
+<%= submit_tag "Import" %>
+<% end %>
+<br>
